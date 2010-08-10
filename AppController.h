@@ -15,7 +15,7 @@
 	NSStatusItem *statusItem;
 	IBOutlet NSMenu *statusMenu;
 	IBOutlet NSMenuItem *statusMenuItem;
-	IBOutlet NSMenuItem *currentSongMenuItem;
+//	IBOutlet NSMenuItem *currentSongMenuItem;
 	IBOutlet NSView *tagEntryView;
 	IBOutlet NSView *recommendationEntryView;
 	IBOutlet NSView *containerView;

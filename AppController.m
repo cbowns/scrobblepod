@@ -114,7 +114,7 @@ nil] ];
 		[statusItem retain];
 	}
 	
-	[currentSongMenuItem setView:containerView];
+//	[currentSongMenuItem setView:containerView];
 	[containerView addSubview:infoView];
 	
 	if (![self cacheFileExists]) {
