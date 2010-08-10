@@ -2,3 +2,7 @@ open items:
 	- multiple track plays
 	- menu is unresponsive at launch
 	- track iPhone last played separate from main iTunes library
+	- no unit tests
+	UKLoginItemRegistry:
+		- see if there's an update, I'm getting warnings on lines 20, 32, 43 of UKLoginItemRegistry.m
+	- 
