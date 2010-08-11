@@ -118,6 +118,6 @@
 	
 	[NSThread setThreadPriority:oldPriority];
 
-	return resultSongArray;
+	return [resultSongArray autorelease];
 }
 @end

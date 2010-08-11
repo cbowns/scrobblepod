@@ -194,7 +194,8 @@ nil] ];
 
 -(void)primeSongPlayCache {
 	BGTrackCollector *collector = [[BGTrackCollector alloc] init];
-		NSArray *allTracks = [collector collectTracksFromXMLFile:self.fullXmlPath withCutoffDate:[[NSCalendarDate date] dateByAddingYears:-5 months:0 days:0 hours:0 minutes:0 seconds:0] includingPodcasts:YES includingVideo:YES ignoringComment:@"" ignoringGenre:nil withMinimumDuration:30];
+	NSArray *allTracks = [collector collectTracksFromXMLFile:self.fullXmlPath withCutoffDate:[[NSCalendarDate date] dateByAddingYears:-5 months:0 days:0 hours:0 minutes:0 seconds:0] includingPodcasts:YES includingVideo:YES ignoringComment:@"" ignoringGenre:nil withMinimumDuration:30];
+	[allTracks retain];
 	[collector release];
 	
 	NSMutableDictionary *primedCache = [[NSMutableDictionary alloc] initWithCapacity:allTracks.count];
@@ -203,6 +204,7 @@ nil] ];
 	for (currentSong in allTracks) {
 		[primedCache setObject:[NSNumber numberWithInt:currentSong.playCount] forKey:currentSong.uniqueIdentifier];
 	}
+	[allTracks release];
 	
 	[primedCache writeToFile:[self pathForCachedDatabase] atomically:YES]; // DISABLE TEMPORARILY SO THAT WE ACTUALLY HAVE SOME EXTRA PLAYS
 	
@@ -771,8 +773,9 @@ nil] ];
 
 	NSLog(@"Collecting previously played tracks");	
 	BGTrackCollector *trackCollector = [[BGTrackCollector alloc] init];
-		NSArray *recentTracksSimple = [trackCollector collectTracksFromXMLFile:self.fullXmlPath withCutoffDate:applescriptInputDateString includingPodcasts:(![defaults boolForKey:BGPrefShouldIgnorePodcasts]) includingVideo:(![defaults boolForKey:BGPrefShouldIgnoreVideo]) ignoringComment:([defaults boolForKey:BGPrefShouldIgnoreComments] ? [defaults stringForKey:BGPrefIgnoreCommentString] : nil) ignoringGenre:([defaults boolForKey:BGPrefShouldIgnoreGenre] ? [defaults stringForKey:BGPrefIgnoreGenreString] : nil) withMinimumDuration:[defaults integerForKey:BGPrefIgnoreShortLength]];//![defaults boolForKey:BGPrefShouldIgnorePodcasts]
+	NSArray *recentTracksSimple = [trackCollector collectTracksFromXMLFile:self.fullXmlPath withCutoffDate:applescriptInputDateString includingPodcasts:(![defaults boolForKey:BGPrefShouldIgnorePodcasts]) includingVideo:(![defaults boolForKey:BGPrefShouldIgnoreVideo]) ignoringComment:([defaults boolForKey:BGPrefShouldIgnoreComments] ? [defaults stringForKey:BGPrefIgnoreCommentString] : nil) ignoringGenre:([defaults boolForKey:BGPrefShouldIgnoreGenre] ? [defaults stringForKey:BGPrefIgnoreGenreString] : nil) withMinimumDuration:[defaults integerForKey:BGPrefIgnoreShortLength]];//![defaults boolForKey:BGPrefShouldIgnorePodcasts]
 	[trackCollector release];
+	[recentTracksSimple retain];
 	
 	NSLog(@"Assigning song list to variable");
 	NSArray *allRecentTracks;
@@ -781,11 +784,10 @@ nil] ];
 		BGMultipleSongPlayManager *multiPlayManager = [[BGMultipleSongPlayManager alloc] init];
 		allRecentTracks = [multiPlayManager completeSongListForRecentTracks:recentTracksSimple sinceDate:applescriptInputDateString];
 		[multiPlayManager release];
+		[recentTracksSimple release];
 	} else {
 		allRecentTracks = recentTracksSimple;
 	}
-	
-	[recentTracksSimple autorelease];
 	
 	NSLog(@"Using multi-play: %@",([defaults boolForKey:BGPrefShouldDoMultiPlay] ? @"Yes" : @"No"));
 	NSLog(@"Got all recent tracks:\n%@",allRecentTracks);
