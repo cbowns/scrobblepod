@@ -352,7 +352,7 @@ nil] ];
 }
 
 -(IBAction)updateTagLabel:(id)sender {
-	NSString *properString;
+	NSString *properString = @"";
 	BGLastFmSong *currentSong = [[iTunesWatcher sharedManager] currentSong];
 	if (currentSong) {
 		if (!isLoadingCommonTags) {
