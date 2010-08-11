@@ -34,7 +34,7 @@
 
 - (id)initWithStatusItem:(NSStatusItem*)item;
 
-@property (retain) NSImage *image;
+@property (retain, nonatomic) NSImage *image;
 @property (retain) NSImage *alternateImage;
 @property (assign) id target;
 @property (assign) SEL action;

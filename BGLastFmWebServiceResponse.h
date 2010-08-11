@@ -31,7 +31,7 @@
 
 @property (retain) NSXMLDocument *responseDocument;
 @property (assign) BOOL wasOK;
-@property (assign) int lastFmCode;
+@property (assign, nonatomic) int lastFmCode;
 @property (readonly) BOOL failedDueToInvalidKey;
 
 -(id)initWithData:(NSData *)receivedData;

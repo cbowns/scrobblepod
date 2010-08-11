@@ -110,9 +110,9 @@
 -(BOOL)shouldScroll;
 
 #pragma mark Properties
-@property (retain) NSImage *stringImage;
-@property (retain) NSImage *statusImage;
-@property (assign) BOOL active;
+@property (retain, nonatomic) NSImage *stringImage;
+@property (retain, nonatomic) NSImage *statusImage;
+@property (assign, nonatomic) BOOL active;
 @property (assign) BOOL isResizingBlue;
 @property (assign) int currentBlueAction;
 @property (assign) int currentLoveHateIconOpacity;
