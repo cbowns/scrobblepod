@@ -41,9 +41,10 @@
 
 		NSCalendarDate *playedDate_Original;
 
-		while ( songIndex+efficientPostIndex<[songList count] && efficientPostIndex<multiLimitPref ) {
+		while ( songIndex + efficientPostIndex < [songList count]
+			 && efficientPostIndex < multiLimitPref ) {
 
-			int totalIndex = songIndex+efficientPostIndex;
+			int totalIndex = songIndex + efficientPostIndex;
 
 			BGLastFmSong *currentTrackDetails = [songList objectAtIndex:totalIndex];
 
@@ -94,7 +95,7 @@
 			NSLog(@"ERROR CODE: %ld",(long)[postingError code]);
 		}
 		
-		if (scrobbleResponseData != nil/* && [postingError code]!=-1001 && [response statusCode]==200*/) {
+		if (scrobbleResponseData) /* && [postingError code]!=-1001 && [response statusCode]==200*/ {
 			NSString *scrobbleResponseString = [[NSString alloc] initWithData:scrobbleResponseData encoding:NSUTF8StringEncoding];
 			if (theResponse) [theResponse release];
 			theResponse = [[BGLastFmScrobbleResponse alloc] initWithScrobbleResponseString:scrobbleResponseString];
@@ -107,7 +108,7 @@
 			[theResponse setWasSuccessful:NO];
 		}
 		
-		songIndex = songIndex + efficientPostIndex;
+		songIndex += efficientPostIndex;
 
 	}
 	return theResponse;
