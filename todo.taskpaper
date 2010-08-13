@@ -5,4 +5,16 @@ open items:
 	- no unit tests
 	UKLoginItemRegistry:
 		- see if there's an update, I'm getting warnings on lines 20, 32, 43 of UKLoginItemRegistry.m
-	- 
+
+	
+
+Archive:
+	- crash: @done(2010-08-15) @project(open items)
+				Thread 6 Crashed:
+				0   libobjc.A.dylib               	0x00007fff8526811c objc_msgSend + 40
+				1   com.bengummer.ScrobblePod     	0x000000010002b53d -[BGLastFmSubmissionHandshaker performSubmissionHandshakeForUser:withWebServiceSessionKey:] + 749 (BGLastFmSubmissionHandshaker.m:37)
+				2   com.bengummer.ScrobblePod     	0x000000010002ae88 -[BGLastFmAuthenticationManager fetchNewSubmissionSessionKeyUsingWebServiceSessionKey] + 200 (BGLastFmAuthenticationManager.m:67)
+				3   com.bengummer.ScrobblePod     	0x0000000100008283 -[AppController postScrobble] + 2371 (AppController.m:816)
+				4   com.apple.Foundation          	0x00007fff86a71d29 __NSThread__main__ + 1429
+				5   libSystem.B.dylib             	0x00007fff88111596 _pthread_start + 331
+				6   libSystem.B.dylib             	0x00007fff88111449 thread_start + 13
