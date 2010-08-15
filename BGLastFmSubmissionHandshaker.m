@@ -34,7 +34,8 @@
 	[request release];
 	
 	BGLastFmSubmissionHandshakeResponse *responseObject;
-	if (responseData != nil && [postingError code] != -1001 && [response statusCode] == 200) {
+	// if responseData is not nil, and postingError either isn't set OR it is set but it isn't -1001, and…
+	if (responseData != nil && (!postingError || (postingError && [postingError code] != -1001) ) && [response statusCode] == 200) {
 		responseObject = [[BGLastFmSubmissionHandshakeResponse alloc] initWithData:responseData];
 		NSLog(@"SUB");
 		[[NSNotificationCenter defaultCenter] postNotificationName:APIHUB_WebServiceAuthorizationCompleted object:nil];
