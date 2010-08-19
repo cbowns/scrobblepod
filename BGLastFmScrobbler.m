@@ -111,7 +111,7 @@
 		songIndex += efficientPostIndex;
 
 	}
-	return theResponse;
+	return [theResponse autorelease];
 }
 
 @end
