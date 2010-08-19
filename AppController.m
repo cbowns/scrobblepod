@@ -789,10 +789,12 @@ nil] ];
 	if ([defaults boolForKey:BGPrefShouldDoMultiPlay]) {
 		BGMultipleSongPlayManager *multiPlayManager = [[BGMultipleSongPlayManager alloc] init];
 		allRecentTracks = [multiPlayManager completeSongListForRecentTracks:recentTracksSimple sinceDate:applescriptInputDateString];
+		[allRecentTracks retain];
 		[multiPlayManager release];
 		[recentTracksSimple release];
 	} else {
 		allRecentTracks = recentTracksSimple;
+		recentTracksSimple = nil;
 	}
 	
 	NSLog(@"Using multi-play: %@",([defaults boolForKey:BGPrefShouldDoMultiPlay] ? @"Yes" : @"No"));
@@ -864,6 +866,8 @@ nil] ];
 		
 	}
 	
+	[allRecentTracks release];
+
 	[self performSelectorOnMainThread:@selector(setIsScrobblingWithNumber:) withObject:[NSNumber numberWithBool:NO] waitUntilDone:YES];// setIsScrobbling:NO];
 	[self performSelectorOnMainThread:@selector(detachNowPlayingThread) withObject:nil waitUntilDone:YES];
 	
