@@ -99,7 +99,7 @@
 		
 		if (scrobbleResponseData) /* && [postingError code]!=-1001 && [response statusCode]==200*/ {
 			NSString *scrobbleResponseString = [[NSString alloc] initWithData:scrobbleResponseData encoding:NSUTF8StringEncoding];
-			if (theResponse) [theResponse release];
+			[theResponse release];
 			theResponse = [[BGLastFmScrobbleResponse alloc] initWithScrobbleResponseString:scrobbleResponseString];
 			[scrobbleResponseString release];
 			
