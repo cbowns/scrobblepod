@@ -104,7 +104,8 @@ int IntializeMobileDeviceSupport(const char *path, void **handle)
     
     if ((libHandle = dlopen(path, RTLD_LAZY|RTLD_LOCAL))) {
         AMDeviceNotificationSubscribe subscribe;
-        if (subscribe = dlsym(libHandle, "AMDeviceNotificationSubscribe")) {
+        subscribe = dlsym(libHandle, "AMDeviceNotificationSubscribe");
+        if (subscribe) {
             struct AMDeviceNotification *note;
             err = subscribe(DeviceNotificationCallback_, 0, 0, 0, &note);
             
