@@ -47,7 +47,11 @@
 				BOOL trackPassed = [trackDetails passesExclusionTestWithCutoffDate:cutoffDate includingPodcasts:includePodcasts includingVideo:includeVideo ignoringComment:ignoreString ignoringGenre:genreString withMinimumDuration:minimumDuration];
 				if (trackPassed==YES)	[wantedTracks addObject:trackDetails];
 			}
+#if __LP64__
+			NSLog(@"Tracks Passed: %ld",wantedTracks.count);
+#else
 			NSLog(@"Tracks Passed: %d",wantedTracks.count);
+#endif
 			
 			NSSortDescriptor *d = [[[NSSortDescriptor alloc] initWithKey: @"Play Date UTC" ascending: YES] autorelease];
 			NSArray *wantedTracksSorted = [wantedTracks sortedArrayUsingDescriptors: [NSArray arrayWithObject: d]];
