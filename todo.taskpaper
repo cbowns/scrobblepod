@@ -5,7 +5,8 @@ open items:
 	- no unit tests
 	UKLoginItemRegistry:
 		- see if there's an update, I'm getting warnings on lines 20, 32, 43 of UKLoginItemRegistry.m
-
+	- kill CTGradient for NSGradient: http://blog.oofn.net/2006/01/15/gradients-in-cocoa/
+		- that'll clean up my float cast warnings.
 	
 
 Archive:
