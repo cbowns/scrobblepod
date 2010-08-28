@@ -8,7 +8,7 @@ open items:
 	- kill CTGradient for NSGradient: http://blog.oofn.net/2006/01/15/gradients-in-cocoa/
 		- that'll clean up my float cast warnings.
 	- kill NSCalendarDate (BGLastFmScrobbler.m:58): see deprecation warnings in NSCalendarDate
-	
+	- fix multiplay: it's got a TON of dupes after a few days. simply doing a pre-sync capture, plus capturing the last played data going back 30 days, plus a post-sync play count, and it's all math from there.
 
 Archive:
 	- crash: @done(2010-08-15) @project(open items)
