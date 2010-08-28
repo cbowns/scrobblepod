@@ -1,8 +1,10 @@
 open items:
 	- multiple track plays
-	- menu is unresponsive at launch
+	- menu is unresponsive at launch: growl?
 	- track iPhone last played separate from main iTunes library
-	- no unit tests
+		- maybe not needed?
+		- capture last playeds 30 days back (i.e. we can detect offline multiplays going 30 days back, which is just obscene) and then compare dates. anything with an update, examine their new play count, and synthesize a play for all of those counts minus the latest.
+	- need some unit tests
 	UKLoginItemRegistry:
 		- see if there's an update, I'm getting warnings on lines 20, 32, 43 of UKLoginItemRegistry.m
 	- kill CTGradient for NSGradient: http://blog.oofn.net/2006/01/15/gradients-in-cocoa/
