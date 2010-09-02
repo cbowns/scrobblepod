@@ -60,20 +60,8 @@
 		// Create Objects Needed Later On
 		[self createTextAttributesDictionary];
 
-		NSColor *color1 = [NSColor blackColor];
-		// color1.red = color1.green = color1.blue  = 0.75;
-		// color1.alpha = 1.00;
-		// color1.position = 0;
-
-		NSColor *color2 = [NSColor grayColor];
-		// color2.red = color2.green = color2.blue  = 0.90;
-		// color2.alpha = 1.00;
-		// color2.position = 1;
-		
-		// NSArray *colors = [NSArray arrayWithObjects:color1, color2];
-		
-		gradientFill = [[NSGradient alloc] initWithColors:
-		                [NSArray arrayWithObjects:color1, color2]];
+		NSArray *colors = [NSArray arrayWithObjects:[NSColor blackColor], [NSColor grayColor], nil];
+		gradientFill = [[NSGradient alloc] initWithColors:colors];
 		
 		[self setStringValue:@"BGRoundedView: Please set string"];
 		[self createIconSet];
