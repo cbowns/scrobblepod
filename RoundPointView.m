@@ -55,18 +55,6 @@
 	[[NSColor darkGrayColor] set];
 	[bezierPath setFlatness:0.1];
 	[bezierPath stroke];
-	
-/*	NSBezierPath *highlightLine = [NSBezierPath bezierPath];
-	[highlightLine moveToPoint:NSMakePoint(cornerRadius, entireHeight-triangleHeight-2)];
-	[highlightLine lineToPoint:NSMakePoint(triangleCenter-(triangleWidth/2), entireHeight-triangleHeight-2)];
-	
-	[highlightLine moveToPoint:NSMakePoint(triangleCenter+(triangleWidth/2), entireHeight-triangleHeight-2)];
-	[highlightLine lineToPoint:NSMakePoint(entireWidth-cornerRadius, entireHeight-triangleHeight-2)];
-	[highlightLine closePath];
-	
-	[[NSColor colorWithCalibratedWhite:1.0 alpha:1.0] set];
-	[highlightLine setLineWidth:0.5];
-	[highlightLine stroke];*/
 }
 
 -(BOOL)acceptsFirstResponder {
