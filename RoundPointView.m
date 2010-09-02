@@ -44,7 +44,14 @@
 
 	[bezierPath closePath];
 	
-	[[NSGradient unifiedNormalGradient] fillBezierPath:bezierPath angle:90.0];
+	NSGradient *normalGradient;
+	
+	NSColor *color1 = [NSColor blackColor];
+	NSColor *color2 = [NSColor grayColor];
+	normalGradient = [[NSGradient alloc] initWithColors:
+	                  [NSArray arrayWithObjects:color1, color2]];
+	[normalGradient drawInBezierPath:bezierPath angle:90.0];
+	
 	[[NSColor darkGrayColor] set];
 	[bezierPath setFlatness:0.1];
 	[bezierPath stroke];
