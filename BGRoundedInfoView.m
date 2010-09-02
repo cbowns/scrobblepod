@@ -525,7 +525,7 @@
 		[backgroundImage lockFocus];
 				
 			// Draw Background, Blue, Shine
-			[gradientFill fillBezierPath:roundedPath angle:90];
+			[gradientFill drawInBezierPath:roundedPath angle:90.0];
 			if (self.active) [blueImage drawAtPoint:NSMakePoint(currentBlueOffset,0) fromRect:NSZeroRect operation:NSCompositeSourceAtop fraction:0.9];
 			[self.statusImage drawAtPoint:NSMakePoint(19,(drawHeight/2) - (self.statusImage.size.height/2)) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
 			[shineImage drawAtPoint:NSMakePoint(0,shineHeight) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:0.4];
