@@ -14,6 +14,7 @@ open items:
 	- kill CTGradient for NSGradient: http://blog.oofn.net/2006/01/15/gradients-in-cocoa/
 		- that'll clean up my float cast warnings.
 	- kill NSCalendarDate (BGLastFmScrobbler.m:58): see deprecation warnings in NSCalendarDate
+	- scrub for TODO, I've added some comments around the codebase
 
 Archive:
 	- crash: @done(2010-08-15) @project(open items)
