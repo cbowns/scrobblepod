@@ -803,10 +803,14 @@ nil] ];
 	int recentTracksCount = allRecentTracks.count;
 	
 	if (recentTracksCount > 0) {
+		// TODO: our popup prompt goes here.
 	
-		// TODO: why 1?
-		if (recentTracksCount > 1) 	[[GrowlHub sharedManager] postGrowlNotificationWithName:SP_Growl_StartedScrobbling andTitle:SP_Growl_StartedScrobbling andDescription:[NSString stringWithFormat:@"Scrobbling %d track%@ to Last.fm", recentTracksCount, ( recentTracksCount == 1 ? @"" : @"s" )] andImage:nil andIdentifier:SP_Growl_StartedScrobbling];
-
+		[[GrowlHub sharedManager] postGrowlNotificationWithName:SP_Growl_StartedScrobbling
+													   andTitle:SP_Growl_StartedScrobbling
+												 andDescription:[NSString stringWithFormat:@"Scrobbling %d track%@ to Last.fm", recentTracksCount, ( recentTracksCount == 1 ? @"" : @"s" )]
+													   andImage:nil
+												  andIdentifier:SP_Growl_StartedScrobbling];
+		
 		int scrobbleAttempts = 0;
 		while (scrobbleAttempts < 2) {
 		
