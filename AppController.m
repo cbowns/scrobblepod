@@ -804,6 +804,7 @@ nil] ];
 	
 	if (recentTracksCount > 0) {
 	
+		// TODO: why 1?
 		if (recentTracksCount > 1) 	[[GrowlHub sharedManager] postGrowlNotificationWithName:SP_Growl_StartedScrobbling andTitle:SP_Growl_StartedScrobbling andDescription:[NSString stringWithFormat:@"Scrobbling %d track%@ to Last.fm", recentTracksCount, ( recentTracksCount == 1 ? @"" : @"s" )] andImage:nil andIdentifier:SP_Growl_StartedScrobbling];
 
 		int scrobbleAttempts = 0;
@@ -822,7 +823,7 @@ nil] ];
 					if (scrobbleResponse.responseType==SCROBBLE_RESPONSE_BADAUTH) {
 						// Need to rehandshake
 						[authManager fetchNewSubmissionSessionKeyUsingWebServiceSessionKey];
-						scrobbleAttempts = 2;
+						scrobbleAttempts = 2; // TODO: this is really just "let's bail"
 					} else if (scrobbleResponse.responseType==SCROBBLE_RESPONSE_FAILED) {
 						[[GrowlHub sharedManager] postGrowlNotificationWithName:SP_Growl_FailedScrobbling andTitle:@"Tracks could not be scrobbled" andDescription:[NSString stringWithFormat:@"Server said \"%@\"",[scrobbleResponse failureReason]] andImage:nil andIdentifier:SP_Growl_StartedScrobbling];
 						[prefController addHistoryWithSuccess:NO andDate:[NSDate date] andDescription:[NSString stringWithFormat:@"Scrobble failed: ",[scrobbleResponse failureReason]]];
@@ -830,7 +831,7 @@ nil] ];
 						// Because the scrobble post URL is stored in the user defaults (and handshake is not updated on launch), there is a
 						// chance that the stored URL (IP address) may no longer point to Last.fm. In this case, we re-handshake.
 						[authManager fetchNewSubmissionSessionKeyUsingWebServiceSessionKey];
-						scrobbleAttempts = 2;
+						scrobbleAttempts = 2; // TODO: that's a hack.
 					} else {
 						if (scrobbleAttempts==1) {
 							[[GrowlHub sharedManager] postGrowlNotificationWithName:SP_Growl_FailedScrobbling andTitle:@"Tracks could not be scrobbled" andDescription:@"Scrobbling probably timed out" andImage:nil andIdentifier:SP_Growl_StartedScrobbling];

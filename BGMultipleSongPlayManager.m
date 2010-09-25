@@ -13,7 +13,7 @@
 
 -(NSArray *)completeSongListForRecentTracks:(NSArray *)recentTracks sinceDate:(NSCalendarDate *)theDate {
 	NSMutableDictionary *cachedDatabase = [[NSDictionary dictionaryWithContentsOfFile:[self pathForCachedDatabase]] mutableCopy];
-	if (!cachedDatabase) cachedDatabase = [[NSMutableDictionary alloc] initWithCapacity:0];
+	if (!cachedDatabase) cachedDatabase = [[NSMutableDictionary alloc] initWithCapacity:0]; // TODO: should BAIL if this is the case.
 	
 	int lastScrobbleTime = [theDate timeIntervalSinceReferenceDate];
 	
@@ -54,11 +54,11 @@
 
 		if ( startTimeOfCurrentSong-completionTimeOfPreviousSong > 25) {
 			BGTimelineGap *newGap = [[BGTimelineGap alloc] init];
-				newGap.startTime = completionTimeOfPreviousSong;
-				newGap.endTime = startTimeOfCurrentSong;
-				NSLog(@"FOUND GAP WITH DURATION: %d",newGap.duration);
-				[gapList addObject:newGap];
-			[newGap release];
+			newGap.startTime = completionTimeOfPreviousSong;
+			newGap.endTime = startTimeOfCurrentSong;
+			NSLog(@"FOUND GAP WITH DURATION: %d",newGap.duration);
+			[gapList addObject:newGap];
+			[newGap release]; // TODO: is this correct?
 		}
 		completionTimeOfPreviousSong = completionTimeOfCurrentSong;
 
