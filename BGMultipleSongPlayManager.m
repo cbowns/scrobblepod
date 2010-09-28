@@ -48,7 +48,7 @@
 		int completionTimeOfCurrentSong = currentSong.unixPlayedDate;
 		int startTimeOfCurrentSong = completionTimeOfCurrentSong - currentSong.length;
 
-		if ( startTimeOfCurrentSong-completionTimeOfPreviousSong > 25) {
+		if (startTimeOfCurrentSong-completionTimeOfPreviousSong > 25) {
 			BGTimelineGap *newGap = [[BGTimelineGap alloc] init];
 			newGap.startTime = completionTimeOfPreviousSong;
 			newGap.endTime = startTimeOfCurrentSong;
