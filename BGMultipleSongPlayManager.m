@@ -28,23 +28,20 @@
 		int currentPlayCount = currentSong.playCount;
 		int cachedPlayCount = [[cachedDatabase objectForKey:currentUniqueIdentifier] intValue];
 		
-		if (currentPlayCount && cachedPlayCount) {
-			//if (!cachedPlayCount) cachedPlayCount = 0;
+		if (currentPlayCount) {
+			if (!cachedPlayCount) cachedPlayCount = 0;
 			int difference = currentPlayCount - cachedPlayCount;
 			int extraPlays = difference - 1;
 			NSLog(@"PROCESSING SONG: '%@' (UID = %@) Cached:%d Current:%d CalculatedExtra:%d",currentSong.title,currentSong.uniqueIdentifier, cachedPlayCount,currentPlayCount,extraPlays);
-			if (!cachedPlayCount) NSLog(@"WARNING: cachedPlayCount == nil; Error in calculation will likely occur");
-			if (cachedPlayCount && extraPlays > 0) { // we need the first statement, because if the cache does not yet have the count, the extraPlays = currentPlayCount-1
+			if (extraPlays > 0) { // we need the first statement, because if the cache does not yet have the count, the extraPlays = currentPlayCount-1
 				currentSong.extraPlays = extraPlays;
 				NSLog(@"EXTRA PLAYS: '%@' = %d",currentSong.title,currentSong.extraPlays);
 			}
-		} else {
-			NSLog(@"WARNING: Play count entry (current or cached) was not found. Likely due to a previously unknown song being played.");
-		}
-		
-		if (currentPlayCount) {
 			if (!currentUniqueIdentifier) NSLog(@"WARNING: currentUniqueIdentifier = nil; will cause crash with setObject:forKey;");
 			[cachedDatabase setObject:[NSNumber numberWithInt:currentPlayCount] forKey:currentUniqueIdentifier];
+		} else {
+			NSLog(@"WARNING: Play count entry (current or cached) was not found. Likely due to a previously unknown song being played.");
+			// TODO: this is BAD.
 		}
 			
 		// find extra plays
