@@ -803,7 +803,9 @@ nil] ];
 	int recentTracksCount = allRecentTracks.count;
 	
 	if (recentTracksCount > 0) {
-		// TODO: our popup prompt goes here.
+		// TODO: our popup prompt goes here:
+		// NSArray *allRecentTracks;
+
 	
 		[[GrowlHub sharedManager] postGrowlNotificationWithName:SP_Growl_StartedScrobbling
 													   andTitle:SP_Growl_StartedScrobbling

@@ -43,7 +43,6 @@
 		}
 		
 		if (currentPlayCount) {
-			if (!currentPlayCount) NSLog(@"WARNING: currentPlayCount = nil; will cause crash with setObject:forKey;");
 			if (!currentUniqueIdentifier) NSLog(@"WARNING: currentUniqueIdentifier = nil; will cause crash with setObject:forKey;");
 			[cachedDatabase setObject:[NSNumber numberWithInt:currentPlayCount] forKey:currentUniqueIdentifier];
 		}
@@ -58,7 +57,7 @@
 			newGap.endTime = startTimeOfCurrentSong;
 			NSLog(@"FOUND GAP WITH DURATION: %d",newGap.duration);
 			[gapList addObject:newGap];
-			[newGap release]; // TODO: is this correct?
+			[newGap release];
 		}
 		completionTimeOfPreviousSong = completionTimeOfCurrentSong;
 
@@ -97,6 +96,8 @@
 					int newSongCompletionTime = (chosenGapStartTime + currentSong.length);
 					NSCalendarDate *newSongCompletionDate = [[NSCalendarDate alloc] initWithTimeIntervalSinceReferenceDate:newSongCompletionTime];
 					BGLastFmSong *extraCopy = [currentSong copy];
+					// At this point, extraCopy has isExtra set to yes, but also has extraPlays and a playCount. I think the scrobble math is wrong elsewhere.
+					// i.e. if you play twice offline, we scrobble two objects 2 times, and overscrobble.
 						[extraCopy setLastPlayed:newSongCompletionDate];
 						[extraCopy setIsExtra:YES];
 						[newSongCompletionDate release];
@@ -105,9 +106,9 @@
 					
 					// update chosen gap to reflect its usage
 					chosenGap.startTime = newSongCompletionTime;
-					currentSong.extraPlays -= 1;
+					currentSong.extraPlays -= 1; // TODO: hack?
 				} else {
-					currentSong.extraPlays = 0;
+					currentSong.extraPlays = 0; // TODO: hack?
 				}
 			}
 		}

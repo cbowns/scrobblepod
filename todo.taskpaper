@@ -1,7 +1,9 @@
 open items:
 	- multiple track plays
+		- if the objects don't currently carry a number of scrobbles to send over, change them to do that. it'll make it easier to pop a prompt that has the number to submit (ooh should that be an editable field?) and uncheck each one
 		- need some diag logging that I can comprehend
 		- currently, it's got a TON of dupes after a few days. simply doing a pre-sync capture, plus capturing the last played data going back 30 days, plus a post-sync play count, and it's all math from there.
+		- a new track doesn't get extra plays! to test: add a track, scrobble three times, step through multiplay code. yikes.
 	- need a prompt before scrobbling
 		- checkboxes for tracks, and timestamp and info on whether or not it's synthesized (i.e. show all plays for a track and let me pick how many to send)
 	- menu is unresponsive at launch: growl?
